@@ -4,9 +4,7 @@
 
 (deftest lists-vectors
   (testing "4, Lists" 
-    (let [x (list :a :b :c)]
-      (is (= x '(:a :b :c)))
-    )
+    (is (=  (list :a :b :c) '(:a :b :c)))
   )
   (testing "5, conj on lists" 
     ;; conj adds %2+ to the front of %1 for lists (linked lists) 
@@ -68,7 +66,7 @@
     (is (= 8 (#(+ % 5) 3)))
     (is (= 8 ((partial + 5) 3)))
   )
-  (testing "16, #(str .. % ..)" 
+  (testing "16, #(str a b c) = abc" 
     (let [f #(str "Hello, " % "!")]
       (is (= (f "Dave") "Hello, Dave!"))
     )
@@ -76,7 +74,7 @@
 )
 
 (deftest map-filter 
-  (testing "17, map"
+  (testing "17, map f sequence"
     (is (= [6 7 8] (map #(+ % 5) '(1 2 3))))
   )
   (testing "18, filter"

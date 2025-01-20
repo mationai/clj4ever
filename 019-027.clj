@@ -17,15 +17,16 @@
       (is (= (f [[1 2] [3 4]]) [1 2]))
     )
   )
-  (testing "21, Nth Element, no nth" 
+  (testing "21, Nth Element, w/o nth" 
     (let [f (fn [a b] ((vec a) b))]
+      ;; clj vectors are functions of their indices
       (is (= (f '(4 5 6 7) 2) 6))
       (is (= (f [:a :b :c] 0) :a))
       (is (= (f [1 2 3 4] 1) 2))
       (is (= (f '([1 2] [3 4] [5 6]) 2) [5 6]))
     )
   )
-  (testing "22, Count # of Elements, no count" 
+  (testing "22, Count # of Elements, w/o count" 
     (let [f #(reduce (fn [acc _] (inc acc)) 0 %)]
       (is (= (f '(1 2 3 3 1)) 5))
       (is (= (f "Hello World") 11))
@@ -34,8 +35,9 @@
       (is (= (f '(:a :b :c)) 3))
     )
   )
-  (testing "23, Reverse a sequence, no reverse" 
+  (testing "23, Reverse a sequence, w/o reverse" 
     (let [f #(reduce conj '() (seq %))]
+      ;; seq returns a list, conj adds elements to the front
       (is (= (f [1 2 3 4 5]) [5 4 3 2 1]))
       (is (= (f (sorted-set 5 7 2 7)) '(7 5 2)))
       (is (= (f [[1 2] [3 4] [5 6]]) [[5 6][3 4][1 2]]))
@@ -61,15 +63,15 @@
   (testing "26, Find the first x fibonacci numbers" 
     (let [f
       #(take %1
-        ((fn r [a b]
-          (lazy-seq (cons a (r b (+ a b))))
+        ((fn recurr [a b]
+          (lazy-seq (cons a (recurr b (+ a b))))
         ) 1 1))]
       (is (= (f 3) '(1 1 2)))
       (is (= (f 6) '(1 1 2 3 5 8)))
       (is (= (f 8) '(1 1 2 3 5 8 13 21)))
     )
   )
-  (testing "27, Palindrome Function, return true if input is a palindrome" 
+  (testing "27, Return true if input is a palindrome" 
     (let [f (fn [x] (= (reverse x) (seq x)))]
       (is (false? (f '(1 2 3 4 5))))
       (is (true? (f "racecar")))
