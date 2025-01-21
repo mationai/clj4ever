@@ -62,9 +62,9 @@
   )
   (testing "26, Find the first x fibonacci numbers" 
     (let [f
-      #(take %1
-        ((fn recurr [a b]
-          (lazy-seq (cons a (recurr b (+ a b))))
+      #(take %
+        ((fn fun [a b]
+          (lazy-seq (cons a (fun b (+ a b))))
         ) 1 1))]
       (is (= (f 3) '(1 1 2)))
       (is (= (f 6) '(1 1 2 3 5 8)))

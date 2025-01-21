@@ -63,8 +63,8 @@
       (is (= (f [44 33] 2) [44 44 33 33]))
     )
   )
-  (testing "34, Create a list of all integers within a range, w/o range"
-    (let [f #(take (- %2 %1) (iterate inc %1))]
+  (testing "34, Create list of integers within a range, w/o range"
+    (let [f #(take (- %2 %) (iterate inc %))]
       (is (= (f 1 4) '(1 2 3)))
       (is (= (f -2 2) '(-2 -1 0 1)))
       (is (= (f 5 8) '(5 6 7)))
@@ -74,7 +74,7 @@
     (is (= "ABC" (apply str (re-seq #"[A-Z]+" "bA1B3Ce "))))
   )
   (testing "38, Get max value in a sequence, w/o max, max-key"
-    (let [f (fn [& args] (reduce #(if (> %1 %2) %1 %2) args))]
+    (let [f (fn [& args] (reduce #(if (> % %2) % %2) args))]
       (is (= (f 1 8 3 4) 8))
       (is (= (f 30 20) 30))
       (is (= (f 45 67 11) 67))
