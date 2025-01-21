@@ -1,6 +1,5 @@
 (ns user
-  (:require [clojure.test :refer [testing is run-tests deftest]]
-            [clojure.string :as cljstr]))
+  (:require [clojure.test :refer [testing is run-tests deftest]]))
 
 (deftest sequences-4
   (testing "50, Split a sequence by type"  
