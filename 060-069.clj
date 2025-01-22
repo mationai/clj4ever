@@ -9,7 +9,6 @@
     ;; (let [f (fn 
     ;;       ([f col] (reductions f col))
     ;;       ([f init col] (reductions f init col)))]
-
     (let [f (fn r
       ([f col] (r f (first col) (rest col)))
       ([f i col]
@@ -94,12 +93,12 @@
       (is (= [:map :set :vector :list] (map f [{} #{} [] ()])))
     )
   )
-  (testing "66, Greatest Common Divisor"  
+  (testing "66, GCD - Greatest Common Divisor"  
     (let [f #(if (zero? %2) 
       % 
       (recur %2 (rem % %2)))]
       (is (= (f 2 4) 2))
-      (is (= (f 10 5) 5))
+      (is (= (f 10 5) 5)) ;; (recur 5 (rem 10 5)=0) -> 5
       (is (= (f 5 7) 1))
       (is (= (f 1023 858) 33))
       ;; (rem 1023 858) = 165 -> (recur 858 165)  
@@ -107,7 +106,7 @@
       ;; (rem  165  33) =   0
     )
   )
-  (testing "67, Prime Numbers"  
+  (testing "67, First n prime numbers"  
     (let [f (fn [n]
       (take n
         (filter #(.isProbablePrime (BigInteger/valueOf %) 10)
