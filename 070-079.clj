@@ -1,7 +1,7 @@
 (ns user
   (:require [clojure.test :refer [testing is run-tests deftest]]))
 
-(deftest sequences-5
+(deftest sequences-6
   (testing "70, Sort words in a sentence, case insensitive"  
     (let [f #(sort-by (fn [v](.toLowerCase v))  (re-seq #"\w+" %))] 
       (is (= (f "Have a nice day.")
