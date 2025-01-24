@@ -34,27 +34,26 @@
             ;; (println "New acc nodes:" new-acc)
             new-acc
           ))]
-        (= 1 (count
-          (reduce connect [] edges)))
-        ))]
-        ;; Eg. [[1 2] [3 4][4 5]] - 2 separate islands
-        ;; Edge: [1 2]
-        ;; acc-nodes: []
-        ;; connected to edge: []
-        ;; unconnected to edge: []
-        ;; new acc nodes: [#{1 2}]
+        (= 1 (count (reduce connect [] edges))) ;; all connected if islands = 1
+      ))]
+      ;; Eg. [[1 2] [3 4][4 5]] - 2 separate islands
+      ;; Edge: [1 2]
+      ;; acc-nodes: []
+      ;; connected to edge: []
+      ;; unconnected to edge: []
+      ;; new acc nodes: [#{1 2}]
 
-        ;; Edge: [3 4]
-        ;; acc-nodes: [#{1 2}]
-        ;; connected to edge: []
-        ;; unconnected to edge: [#{1 2}]
-        ;; new acc nodes: [#{1 2} #{3 4}]
+      ;; Edge: [3 4]
+      ;; acc-nodes: [#{1 2}]
+      ;; connected to edge: []
+      ;; unconnected to edge: [#{1 2}]
+      ;; new acc nodes: [#{1 2} #{3 4}]
 
-        ;; Edge: [4 5]
-        ;; acc-nodes: [#{1 2} #{3 4}]
-        ;; connected to edge: [#{3 4}]
-        ;; unconnected to edge: [#{1 2}]
-        ;; new acc nodes: [#{1 2} #{3 4 5}]
+      ;; Edge: [4 5]
+      ;; acc-nodes: [#{1 2} #{3 4}]
+      ;; connected to edge: [#{3 4}]
+      ;; unconnected to edge: [#{1 2}]
+      ;; new acc nodes: [#{1 2} #{3 4 5}]
       (is (= true (f #{[:a :a]})))
       (is (= true (f #{[:a :b]})))
       (is (= false (f #{[1 2] [2 3] [3 1]
@@ -67,6 +66,23 @@
                     [:x :y] [:d :a] [:b :e] [:x :a]}))) 
     )
   )
+  (testing "92, Roman Numerals"
+    ;; No need to handle numbers > MMMCMXCIX (3999), the largest #
+    ;;  representable with ordinary letters.
+    (let [f (fn [l]
+      (let [r->i {\M 1000 \D 500 \C 100 \L 50 \X 10 \V 5 \I 1}]
+        (+ (apply + (map
+          (fn [[cur nex]]
+              (if (< (r->i cur) (r->i nex))
+                (* -1 (r->i cur))
+                (r->i cur)))
+          (partition 2 1 l))) (r->i (last l)))
+      ))]
+      (is (= 14 (f "XIV")))
+      (is (= 827 (f "DCCCXXVII")))
+      (is (= 3999 (f "MMMCMXCIX")))
+      (is (= 48 (f "XLVIII"))) )
+  )
   ;; (testing "90, "
   ;;   (let [f ]
   ;;     (is ) 
@@ -77,8 +93,6 @@
   ;;     (is ) 
   ;;   )
   ;; )
-  ;; (testing "90, "
-  ;;   (let [f ]
   ;;     (is ) 
   ;;   )
   ;; )
