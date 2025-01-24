@@ -1,6 +1,6 @@
 (ns user
   (:require [clojure.test :refer [testing is run-tests deftest]]
-            [clojure.string :as cljstr]))
+            [clojure.string]))
 
 (deftest sequences-2
   (testing "28, Flatten a Sequence, w/o flatten"
@@ -17,7 +17,7 @@
     )
   )
   (testing "29, Filter Cap-chars"
-    (let [f #(cljstr/replace % #"[^A-Z]" "")]
+    (let [f #(clojure.string/replace % #"[^A-Z]" "")]
       (is (= (f "HeLlO, WoRlD!") "HLOWRD"))
       (is (empty? (f "nothing")))
       (is (= (f "$#A(*&987Zf") "AZ"))

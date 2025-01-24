@@ -1,6 +1,6 @@
 (ns user
   (:require [clojure.test :refer [testing is run-tests deftest]]
-            [clojure.set :as cljset]))
+            [clojure.set]))
 
 (deftest lists-vectors
   (testing "4, Lists" 
@@ -32,7 +32,7 @@
   (testing "8, Sets" 
     (let [x #{:a :b :c :d}]
       (is (= x (set '(:a :a :b :c :c :c :c :d :d))))
-      (is (= x (cljset/union #{:a :b :c} #{:b :c :d})))
+      (is (= x (clojure.set/union #{:a :b :c} #{:b :c :d})))
     )
   )
   (testing "9, conj on sets" 

@@ -1,5 +1,6 @@
 (ns user
-  (:require [clojure.test :refer [testing is run-tests deftest]]))
+  (:require [clojure.test :refer [testing is run-tests deftest]]
+            [clojure.string]))
 
 (deftest sequences-6
   (testing "70, Sort words in a sentence, case insensitive"  

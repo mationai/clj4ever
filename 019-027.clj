@@ -1,6 +1,5 @@
 (ns user
-  (:require [clojure.test :refer [testing is run-tests deftest]]
-            [clojure.set :as cljset]))
+  (:require [clojure.test :refer [testing is run-tests deftest]]))
 
 (deftest sequences
   (testing "19, Last Element, w/o last" 
