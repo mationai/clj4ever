@@ -32,8 +32,7 @@
           (max i j)
           (if (= (nth a (dec i)) (nth b (dec j)))
             (lvn a b (dec i) (dec j))
-            (inc
-              (min
+            (inc (min
               (lvn a b (dec i) j) ;; delete
               (lvn a b i (dec j)) ;; insert
               (lvn a b (dec i) (dec j)))) ;; replace
